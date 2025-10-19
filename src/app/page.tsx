@@ -1,11 +1,33 @@
 import {Button} from "@/components/ui/button";
 import React from "react";
 import {cn} from "@/lib/utils";
+import type { Metadata } from "next";
 
-type SectionProps = React.ComponentPropsWithoutRef<'section'> & {
+export const metadata: Metadata = {
+  title: "Bao Phan — Software Engineer",
+  description:
+    "Bao Phan — Software engineer based in Ho Chi Minh City. Building high-quality web applications with a focus on frontend engineering and problem solving.",
+  openGraph: {
+    title: "Bao Phan — Software Engineer",
+    description:
+      "Portfolio of Bao Phan — frontend & fullstack software engineer based in Ho Chi Minh City. View projects, experiences and contact information.",
+    type: "website",
+    images: ["/file.svg"],
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const Section: React.FC<
+  React.ComponentPropsWithoutRef<'section'> & {
     fluid?:boolean
-}
-const Section: React.FC<SectionProps> = ({children, fluid = false}) => {
+  }
+> = ({children, fluid = false}) => {
     return <section className={cn(' py-20 w-full', {
         'container': !fluid
     })}>
@@ -13,18 +35,47 @@ const Section: React.FC<SectionProps> = ({children, fluid = false}) => {
     </section>
 }
 
-type SectionHeadingProps = React.ComponentPropsWithoutRef<"h2">
-const SectionHeading: React.FC<SectionHeadingProps> = ({children, className, ...props}) => {
+const SectionHeading: React.FC<React.ComponentPropsWithoutRef<"h2">> = ({children, className, ...props}) => {
     return <h2 className={cn("text-neutral-900 mb-16 font-bold text-6xl", className)} {...props}>
         {children}
     </h2>
 }
 
-
+// JSON-LD structured data for better search results (Person + WebSite)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Bao Phan",
+      "url": "https://portfolio.barox.site",
+      "jobTitle": "Software Engineer",
+      "description": "Frontend & Fullstack engineer based in Ho Chi Minh City. Focused on building performant, accessible, and maintainable web applications.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ho Chi Minh",
+        "addressCountry": "VN"
+      },
+      "sameAs": [
+        "https://github.com/baophan",
+        "https://www.linkedin.com/in/baophan"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://portfolio.barox.site",
+      "name": "Bao Phan — Portfolio",
+      "description": "Portfolio of Bao Phan — frontend & fullstack software engineer based in Ho Chi Minh City.",
+    }
+  ]
+};
 
 export default function Home() {
   return (
   <main>
+      {/* Insert JSON-LD so crawlers can read structured data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <Section>
           <div className="flex justify-between items-end">
               <div className="space-y-5">

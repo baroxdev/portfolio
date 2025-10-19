@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio.barox.site/sitemap.xml
+Host: portfolio.barox.site

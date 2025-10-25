@@ -100,7 +100,7 @@ export const ProjectCard = ({ project }: Props) => {
   const Comp = project?.metadata?.url ? Link : Slot;
 
   return (
-    <Comp href={project.metadata?.url ?? ""} target="_blank">
+    <Comp href={project.metadata?.url ?? "#"} target="_blank">
       <div
         ref={ref}
         data-slot={"card"}

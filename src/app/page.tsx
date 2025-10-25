@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DEFAULT_PROJECTS } from "@/lib/constants";
 import { Briefcase, Download, Mail, MapPin, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 
@@ -67,9 +68,17 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="absolute max-md:relative top-0 left-0 right-0 z-[2] h-[266px] bg-neutral-200"></div>
+      <div className="absolute max-md:relative top-0 left-0 right-0 z-[2] h-[266px] bg-neutral-300">
+        {/* <Image
+          src="/assets/images/wallpaper.svg"
+          width={1440}
+          height={266}
+          alt="Wall paper"
+          className="w-full h-full object-cover z-[3]"
+        /> */}
+      </div>
       <div className="z-[3] relative">
-        <div className="px-5 pt-5 md:px-20 md:pt-20 mb-5 md:pb-20 min-h-screen flex max-md:flex-col gap-4 md:gap-8">
+        <div className="px-5 pt-5 md:px-20 md:pt-20 mb-5 md:pb-20 min-h-screen max-md:rounded-t-xl max-md:bg-white shadow-xl max-md:mt-[-20px] flex max-md:flex-col gap-4 md:gap-8">
           <div
             data-slot="profile-sidebar"
             className="md:max-w-[300px] w-full md:mt-[120px] space-y-5"

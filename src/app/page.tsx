@@ -106,12 +106,19 @@ export default function Home() {
                   </li>
                 </ul>
                 <div data-slot="button-group" className="flex flex-col gap-2">
-                  <Button>
-                    <Mail /> Contact me
+                  <Button asChild>
+                    <a href="mailto:barox.dev@gmail.com">
+                      <Mail className="mr-2" /> Contact me
+                    </a>
                   </Button>
-                  <Button variant="outline">
-                    <Download />
-                    My Resume
+                  <Button variant="outline" asChild>
+                    <a
+                      href="/assets/documents/BaoPQ_Resume_July2025.pdf"
+                      download
+                    >
+                      <Download className="mr-2" />
+                      My Resume
+                    </a>
                   </Button>
                 </div>
               </div>

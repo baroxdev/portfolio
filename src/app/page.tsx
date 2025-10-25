@@ -109,9 +109,14 @@ export default function Home() {
                   <Button>
                     <Mail /> Contact me
                   </Button>
-                  <Button variant="outline">
-                    <Download />
-                    My Resume
+                  <Button variant="outline" asChild>
+                    <a
+                      href="/assets/documents/BaoPQ_Resume_July2025.pdf"
+                      download
+                    >
+                      <Download className="mr-2" />
+                      My Resume
+                    </a>
                   </Button>
                 </div>
               </div>

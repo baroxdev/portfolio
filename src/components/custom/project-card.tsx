@@ -3,6 +3,8 @@
 import Image from "next/image";
 import React, { useEffect, useMemo, useRef } from "react";
 import { FastAverageColor } from "fast-average-color";
+import Link from "next/link";
+import { Slot } from "@radix-ui/react-slot";
 
 export type Project = {
   title: string;
@@ -16,6 +18,7 @@ export type Project = {
     };
   };
   metadata: {
+    url?: string;
     primaryColor: string;
     secondaryColor: string;
   };
@@ -83,37 +86,43 @@ export const ProjectCard = ({ project }: Props) => {
       .then((color) => setDominantColor(color.hex));
   }, [fac, project]);
 
+  const Comp = project?.metadata?.url ? Link : Slot;
+
   return (
-    <div
-      ref={ref}
-      data-slot={"card"}
-      className="will-change-auto group  transition-all relative cursor-pointer"
-      onMouseEnter={() => {
-        if (project.assets.video) setIsHovered(true);
-      }}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <Comp href={project.metadata?.url ?? ""} target="_blank">
       <div
-        data-slot="card-cover"
-        className="max-md:aspect-[260/314] relative group-hover:translate-y-1 rounded-xl group-hover:px-10 group-hover:pt-10 overflow-hidden aspect-[696/450] transition-all"
-        style={
-          {
-            backgroundColor: dominantColor,
-          } as React.CSSProperties
-        }
+        ref={ref}
+        data-slot={"card"}
+        className="will-change-auto group  transition-all relative cursor-pointer"
+        onMouseEnter={() => {
+          if (project.assets.video) setIsHovered(true);
+        }}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="group-hover:rounded-t-xl overflow-hidden transition-all group-hover:mt-3 group-hover:shadow-xl">
-          <ProjectCardDynamicCover hovered={isHovered} project={project} />
+        <div
+          data-slot="card-cover"
+          className=" relative group-hover:translate-y-1 rounded-xl group-hover:px-10 group-hover:pt-10 overflow-hidden aspect-[696/450] transition-all"
+          style={
+            {
+              backgroundColor: dominantColor,
+            } as React.CSSProperties
+          }
+        >
+          <div className="group-hover:rounded-t-xl overflow-hidden transition-all group-hover:mt-3 group-hover:shadow-xl">
+            <ProjectCardDynamicCover hovered={isHovered} project={project} />
+          </div>
         </div>
-      </div>
-      <div className="">
-        <div className="px-[15px] max-md:py-6 w-full mt-auto pb-5 pt-8">
-          <div className="max-w-[80%] max-md:text-sm text-base text-neutral-400 font-medium">
-            <span className="text-neutral-900 font-bold">{project.title}</span>,
-            {project.description}
+        <div className="">
+          <div className="px-[15px] max-md:py-6 w-full mt-auto pb-5 pt-8">
+            <div className="max-w-[80%] max-md:text-sm text-base text-neutral-400 font-medium">
+              <span className="text-neutral-900 font-bold">
+                {project.title}
+              </span>
+              ,{project.description}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Comp>
   );
 };

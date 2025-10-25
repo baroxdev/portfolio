@@ -15,6 +15,7 @@ export const DEFAULT_PROJECTS: Project[] = [
       },
     },
     metadata: {
+      url: "https://arobid.com",
       primaryColor: "#2563EB",
       secondaryColor: "#1E40AF",
     },
@@ -32,6 +33,7 @@ export const DEFAULT_PROJECTS: Project[] = [
       },
     },
     metadata: {
+      url: "https://eximbank.com.vn",
       primaryColor: "#004AAD",
       secondaryColor: "#002D6B",
     },
@@ -49,6 +51,7 @@ export const DEFAULT_PROJECTS: Project[] = [
       },
     },
     metadata: {
+      url: "https://acb.com.vn",
       primaryColor: "#0033A0",
       secondaryColor: "#001D66",
     },
@@ -66,6 +69,7 @@ export const DEFAULT_PROJECTS: Project[] = [
       },
     },
     metadata: {
+      url: "https://vas.edu.vn",
       primaryColor: "#0B8043",
       secondaryColor: "#074B2E",
     },
@@ -99,6 +103,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     metadata: {
       primaryColor: "#8E24AA",
       secondaryColor: "#5C007A",
+      url: "https://frames-generator-webapp.vercel.app",
     },
   },
   // "VAS",

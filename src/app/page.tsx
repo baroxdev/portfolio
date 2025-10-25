@@ -67,29 +67,31 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="absolute top-0 left-0 right-0 z-[2] h-[266px] bg-neutral-200"></div>
+      <div className="absolute max-md:relative top-0 left-0 right-0 z-[2] h-[266px] bg-neutral-200"></div>
       <div className="z-[3] relative">
-        <div className="px-20 pt-20 pb-20 min-h-screen flex gap-8">
+        <div className="px-5 pt-5 md:px-20 md:pt-20 mb-5 md:pb-20 min-h-screen flex max-md:flex-col gap-4 md:gap-8">
           <div
             data-slot="profile-sidebar"
-            className="max-w-[300px] w-full mt-[120px] space-y-5"
+            className="md:max-w-[300px] w-full md:mt-[120px] space-y-5"
           >
             <div className="space-y-5">
               <div data-slot="profile-header" className="space-y-3">
-                <Avatar className="size-28 bg-neutral-300 border-2 border-white">
+                <Avatar className="size-28 bg-neutral-300 border-2 border-white max-md:mt-[-93px] max-md:mx-auto">
                   <AvatarImage src="/assets/images/avatar.png" alt="Bao Phan" />
                   <AvatarFallback>BP</AvatarFallback>
                 </Avatar>
-                <h2 className="text-neutral-900 font-bold text-xl">Bao Phan</h2>
-                <ul className="list-none text-xs text-neutral-600">
-                  <li className="py-1 flex items-center gap-1">
+                <h2 className="text-neutral-900 text-center md:text-left font-bold text-xl">
+                  Bao Phan
+                </h2>
+                <ul className="list-none text-xs text-neutral-600 ">
+                  <li className="py-1 flex items-center gap-1 max-md:justify-center">
                     <Briefcase size={16} />
                     Software Engineer
                   </li>
-                  <li className="py-1 flex items-center gap-1">
+                  <li className="py-1 flex items-center gap-1 max-md:justify-center">
                     <ShieldCheck size={16} /> Available for work
                   </li>
-                  <li className="py-1 flex items-center gap-1">
+                  <li className="py-1 flex items-center gap-1 max-md:justify-center">
                     <MapPin size={16} />
                     Ho Chi Minh, Viet Nam
                   </li>
@@ -173,7 +175,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div data-slot="profile-contents" className="flex-1 mt-[186px] pt-20">
+          <div
+            data-slot="profile-contents"
+            className="flex-1 md:mt-[186px] md:pt-20"
+          >
             <Tabs defaultValue="projects">
               <TabsList>
                 <TabsTrigger value="projects">Projects</TabsTrigger>

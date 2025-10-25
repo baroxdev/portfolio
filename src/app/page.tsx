@@ -142,6 +142,7 @@ export default function Home() {
                       className="flex items-center underline gap-2 text-xs"
                     >
                       <SocialIcon
+                        as="div"
                         network="linkedin"
                         style={{
                           width: 24,
@@ -159,6 +160,7 @@ export default function Home() {
                       className="flex items-center underline gap-2 text-xs"
                     >
                       <SocialIcon
+                        as="div"
                         network="github"
                         style={{
                           width: 24,
@@ -176,6 +178,7 @@ export default function Home() {
                       className="flex items-center underline gap-2 text-xs"
                     >
                       <SocialIcon
+                        as="div"
                         network="x"
                         style={{
                           width: 24,

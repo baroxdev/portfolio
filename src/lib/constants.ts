@@ -58,8 +58,7 @@ export const DEFAULT_PROJECTS: Project[] = [
   },
   {
     title: "VAS",
-    description:
-      "A comprehensive vehicle management system for tracking, maintaining, and optimizing fleet operations.",
+    description: "",
     assets: {
       image: {
         url: "/assets/images/projects/vas.edu.vn/vas_thumbnail.webp",
@@ -76,8 +75,7 @@ export const DEFAULT_PROJECTS: Project[] = [
   },
   {
     title: "Luckydraw App - KBank Thưởng vàng",
-    description:
-      "A mobile application that allows users to withdraw cash from ATMs without using a physical card, integrated with KBank's reward system.",
+    description: "",
     assets: {
       image: {
         url: "/assets/images/projects/kbank/kbank_thumbnail.webp",

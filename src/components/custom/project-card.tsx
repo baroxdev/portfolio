@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { FastAverageColor } from "fast-average-color";
 import Link from "next/link";
 import { Slot } from "@radix-ui/react-slot";
+import { cn } from "@/lib/utils";
 
 export type Project = {
   title: string;
@@ -29,47 +30,57 @@ type Props = {
   index?: number;
 };
 
+type Status = "idle" | "loading" | "loaded";
+
 export const ProjectCardDynamicCover = ({
   project,
   hovered,
 }: Props & { hovered: boolean }) => {
-  const [, setImageStatus] = React.useState<"idle" | "loading" | "loaded">(
-    "idle"
-  );
+  const [, setImageStatus] = React.useState<Status>("idle");
+  const [videoStatus, setVideoStatus] = React.useState<Status>("idle");
 
   return (
-    <div className="size-full bg-neutral-300 object-cover">
-      {!hovered ? (
-        <Image
-          onLoad={() => {
-            setImageStatus("loaded");
-          }}
-          className="w-full h-full project-cover-image object-cover"
-          // random image from unsplash
-          src={project.assets.image.url}
-          width={1140}
-          height={737}
-          quality={100}
-          fetchPriority="high"
-          alt="projects"
-        />
-      ) : (
-        // <div className="bg-radial size-full flex items-center from-blue-900 p-8 to-transparent">
-        //   <AspectRatio ratio={16 / 9} className="rounded-lg overflow-hidden">
-        <>
-          {project.assets.video && (
+    <div className="size-full relative bg-neutral-300 object-cover">
+      <Image
+        onLoad={() => {
+          setImageStatus("loaded");
+        }}
+        className={cn(
+          "w-full h-full project-cover-image object-cover relative z-[2]",
+          {}
+        )}
+        // random image from unsplash
+        src={project.assets.image.url}
+        width={1140}
+        height={737}
+        quality={80}
+        fetchPriority="high"
+        alt="projects"
+      />
+      <>
+        {project.assets.video && (
+          <div className="w-full h-full bg-neutral-200">
             <video
+              key={hovered ? "active" : "inactive"}
               src={project.assets.video.url}
               autoPlay
+              preload="auto"
               loop
+              onLoad={() => setVideoStatus("loaded")}
               muted
-              className="w-full h-full object-cover"
-            ></video>
-          )}
-        </>
-        //   </AspectRatio>
-        // </div>
-      )}
+              className={cn(
+                "w-full transition-all absolute inset-0 h-full object-cover",
+                {
+                  "z-[3] opacity-100": hovered,
+                  "z-[1] opacity-0": !hovered,
+                }
+              )}
+            >
+              <source src={project.assets.video.url} type="webp" />
+            </video>
+          </div>
+        )}
+      </>
     </div>
   );
 };
@@ -89,7 +100,7 @@ export const ProjectCard = ({ project }: Props) => {
   const Comp = project?.metadata?.url ? Link : Slot;
 
   return (
-    <Comp href={project.metadata?.url ?? ""} target="_blank">
+    <Comp href={project.metadata?.url ?? "#"} target="_blank">
       <div
         ref={ref}
         data-slot={"card"}
